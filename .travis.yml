@@ -12,4 +12,11 @@ after_success:
   - docker build -t matthiasleroy/multi-client ./client
   - docker build -t matthiasleroy/multi-nginx ./nginx
   - docker build -t matthiasleroy/multi-server ./server 
-  - docker build -t matthiasleroy/multi-worker ./workers  
+  - docker build -t matthiasleroy/multi-worker ./workers
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push matthiasleroy/multi-client
+  - docker push matthiasleroy/multi-nginx
+  - docker push matthiasleroy/multi-server
+  - docker push matthiasleroy/multi-worker
