@@ -21,12 +21,12 @@ jobs:
           docker run -e CI=true matthiasleroy/react-test npm test
  
       - name: Set Service Key
-        uses: 'google-github-actions/auth@v0'
+        uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.GKE_SA_KEY }}'
  
       - name: Set Project
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: multi-k8s-417221
  
@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: |-
           docker build -t matthiasleroy/multi-client:latest -t matthiasleroy/multi-client:${{ env.SHA }} -f ./client/Dockerfile ./client
-          docker build -t matthiasleroy/multi-server-k8s:latest -t matthiasleroy/multi-server:${{ env.SHA }} -f ./server/Dockerfile ./server
+          docker build -t matthiasleroy/multi-server:latest -t matthiasleroy/multi-server:${{ env.SHA }} -f ./server/Dockerfile ./server
           docker build -t matthiasleroy/multi-worker:latest -t matthiasleroy/multi-worker:${{ env.SHA }} -f ./worker/Dockerfile ./worker
  
       - name: Push
