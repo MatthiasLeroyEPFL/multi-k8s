@@ -3,7 +3,7 @@ name: Deploy MultiK8ss
 on:
   push:
     branches:
-      - main
+      - master
  
 env:
   SHA: $(git rev-parse HEAD)
